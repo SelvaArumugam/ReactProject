@@ -19,20 +19,20 @@ export default function LoginPage()
             <Paper variant='elevation' square={false} sx={{height:"600px",width:"850px", display: "flex"}}>
                 <div style={{height:"600px", backgroundColor:"darkorange",width:"35vh",}}>
                 <div style={{display:"flex"}}>
-                <SecurityIcon sx={{height:"60px",ml:6,mt:7,mr:1, width:"60px",}}/>
+                <SecurityIcon sx={{height:"60px",ml:5,mt:7,mr:1, width:"60px",}}/>
                 <Typography variant='h' sx={{mt:8}}>Trusted by over <br/> 100 million users</Typography>
                 </div>
                 <div style={{display:"flex"}}>
-                <PaymentsIcon sx={{height:"60px",ml:6,mt:7,mr:1, width:"60px",}}/>
+                <PaymentsIcon sx={{height:"60px",ml:5,mt:7,mr:1, width:"60px",}}/>
                 <Typography variant='h' sx={{mt:8}}>Fast and <br/> Secure Payments</Typography>
                 </div>
                 <div style={{display:"flex"}}>
-                <CurrencyRupeeIcon sx={{height:"60px",ml:6,mt:7,mr:1, width:"60px",}}/>
+                <CurrencyRupeeIcon sx={{height:"60px",ml:5,mt:7,mr:1, width:"60px",}}/>
                 <Typography variant='h' sx={{mt:8}}>Save on Every <br/> Booking</Typography>
                 </div>
                 <div style={{display:"flex"}}>
-                <BusinessCenterIcon sx={{height:"60px",ml:6,mt:7,mr:1, width:"60px",}}/>
-                <Typography variant='h' sx={{mt:8}}>Manage Trips,fare alerts & predictions</Typography>
+                <BusinessCenterIcon sx={{height:"60px",ml:5,mt:7,mr:1, width:"60px",}}/>
+                <Typography variant='h' sx={{mt:8}}>Manage Trips,fare alerts predictions</Typography>
                 </div>
                 </div>
                 <form style={{padding:"50px"}}>
@@ -44,10 +44,11 @@ export default function LoginPage()
                     {type == "Phone" ?  <TextField value={info} onChange={(event) =>setInfo(event.target.value)} color='warning' sx={{mt:5 , mb:5}}  label="Enter phone number" type={"tel"} fullWidth variant='standard' 
                     InputProps={{startAdornment: <InputAdornment position="start">+91</InputAdornment>,
                     }}></TextField> :
-                    <TextField color='warning' onChange={(event) =>setInfo(event.target.value)} sx={{mt:5 , mb:5}} label="Enter email" type={"email"} fullWidth variant='standard' ></TextField>
+                    <TextField color='warning' onChange={(event) =>setInfo(event.target.value)} sx={{mt:1 , mb:2}} label="Enter email" type={"email"} fullWidth variant='standard' ></TextField>
                     }
+                    <TextField color='warning' sx={{mt:2 , mb:5}} label="Enter password" type={"password"} fullWidth variant='standard' ></TextField>
                     <Button sx={{mb:5}} fullWidth variant='contained' color='warning'>Login</Button>
-                    <Typography variant='subtitle2'>By logging in, I understand & agree to ixigo terms of use and privacy policy*.</Typography>
+                    <Typography variant='subtitle2'>By logging in, I understand & agree to BookMyFlight's terms of use and privacy policy*.</Typography>
                 </form>
             </Paper>
         </div>

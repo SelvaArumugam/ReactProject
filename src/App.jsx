@@ -1,10 +1,11 @@
 import './App.css';
-import LoginPage from './Components/LoginPage';
-import SignUpPage from './Components/SignUpPage';
+
+import LogSign from './Components/LogSign';
+
 
 function App() {
   return (
-    <SignUpPage></SignUpPage>
+    <LogSign></LogSign>
   );
 }
 
