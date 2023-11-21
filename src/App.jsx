@@ -1,3 +1,4 @@
+import ActionBar from './ActionBar';
 import './App.css';
 
 import LogSign from './Components/LogSign';
@@ -5,7 +6,7 @@ import LogSign from './Components/LogSign';
 
 function App() {
   return (
-    <LogSign></LogSign>
+    <ActionBar></ActionBar>
   );
 }
 
