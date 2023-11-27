@@ -3,7 +3,6 @@ import Body from "./Body";
 import Hotels from "./Hotels";
 import Layout from "./Layout";
 import LoginPage from "./LoginPage";
-import LogSign from "./LogSign";
 import SignUpPage from "./SignUpPage";
 
 
