@@ -5,15 +5,70 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useContext } from 'react';
+import { LogContext } from './LogContext';
+import { useRef } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 export default function LoginPage()
 {
+    let passRef = useRef();
+    let numberRef = useRef();
+    let emailRef = useRef();
+    let [logType,setLogType] = useState("email");
+    let [error,setError] = useState("");
     let [type,setType] = useState("Email");
     let [info,setInfo] = useState("");
+    let navigate = useNavigate();
+    function CheckIfValid()
+    {
+        if(type === "number" && numberRef.current.value === "")
+        {
+            setError("Number cannot be Empty");
+            return;
+        }
+        if(type === "email" && emailRef.current.value=== "")
+        {
+            setError("Email cannot be Empty");
+            return;
+        }
+        if(passRef.current.value === "")
+        { 
+            setError("Password cannot be Empty");
+            return;
+        }
+        if(type === "email")
+        {
+            axios.get(`http://localhost:8000/users?email=${emailRef.current.value}`).then((res) =>{
+            if(res.data[0].password !== passRef.current.value)
+            {
+                setError("Invalid Password");
+                return;
+            }else{
+                navigate("/");
+                setUser(res.data[0].firstName)
+            }
+        })
+        }else{
+            axios.get(`http://localhost:8000/users?number=${numberRef.current.value}`).then((res) => {
+            if(res.data[0].password !== passRef.current.value)
+            {
+                setError("Invalid Password");
+                return;
+            }else{
+                navigate("/");
+                setUser(res.data[0].firstName);
+            }
+        })
+        }
+    }
     function handleType()
     {
         type == "Email" ? setType("Phone") : setType("Email");
+        logType == "email" ? setLogType("number") : setLogType("email");
         setInfo("")
     }
+    let {user,setUser} = useContext(LogContext);
     return(
         <div  style={{backgroundColor:"gray",height:"100vh" ,display:"flex", justifyContent:"center",alignItems:"center"}}>
             <Paper variant='elevation' square={false} sx={{height:"600px",width:"850px", display: "flex"}}>
@@ -41,66 +96,17 @@ export default function LoginPage()
                         <FormControlLabel value ="Phone" control={<Radio/>} label={"Mobile Number"}></FormControlLabel>
                         <FormControlLabel value = "Email" control={<Radio/>} label={"Email"}></FormControlLabel>
                     </RadioGroup>
-                    {type == "Phone" ?  <TextField value={info} onChange={(event) =>setInfo(event.target.value)} color='warning' sx={{mt:5 , mb:5}}  label="Enter phone number" type={"tel"} fullWidth variant='standard' 
+                    {type == "Phone" ?  <TextField inputRef={numberRef} value={info} onChange={(event) =>setInfo(event.target.value)} color='warning' sx={{mt:5 , mb:5}}  label="Enter phone number" type={"tel"} fullWidth variant='standard' 
                     InputProps={{startAdornment: <InputAdornment position="start">+91</InputAdornment>,
                     }}></TextField> :
-                    <TextField color='warning' onChange={(event) =>setInfo(event.target.value)} sx={{mt:1 , mb:2}} label="Enter email" type={"email"} fullWidth variant='standard' ></TextField>
+                    <TextField color='warning'inputRef={emailRef} onChange={(event) =>setInfo(event.target.value)} sx={{mt:1 , mb:2}} label="Enter email" type={"email"} fullWidth variant='standard' ></TextField>
                     }
-                    <TextField color='warning' sx={{mt:2 , mb:5}} label="Enter password" type={"password"} fullWidth variant='standard' ></TextField>
-                    <Button sx={{mb:5}} fullWidth variant='contained' color='warning'>Login</Button>
+                    <TextField color='warning' inputRef={passRef} sx={{mt:2 , mb:5}} label="Enter password" type={"password"} fullWidth variant='standard' ></TextField>
+                    <Button onClick={() => CheckIfValid()}sx={{mb:5}} fullWidth variant='contained' color='warning'>Login</Button>
+                    {error && <Typography variant="h5" color="darkorange">{error}</Typography>}
                     <Typography variant='subtitle2'>By logging in, I understand & agree to BookMyFlight's terms of use and privacy policy*.</Typography>
                 </form>
             </Paper>
         </div>
     );
 }
-
-
-function Login()
-{
-    return(
-        <Box sx={{width:"100%",height:"100vh", display: "flex", alignItems: "center"}}>
-            <Grid container justifyContent={"center"} padding="3">
-                <Grid item xs={2.5} style={{height:"500px",backgroundColor:"darkorange"}}></Grid>
-                <Grid item xs={4} style={{height:"500px",backgroundColor:"grey", padding: "16px" }}>
-                <Box component="form" noValidate  sx={{ mt: 3 }}>                        
-                <Grid container spacing={2}> 
-                    <Grid item xs={12} sm={6}>
-                    <TextField
-                    autoComplete="given-name"
-                    name="firstName"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="First Name"
-                    autoFocus
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                       <TextField
-                          required
-                          fullWidth
-                          id="lastName"
-                          label="Last Name"
-                        name="lastName"
-                        autoComplete="family-name"
-                        />
-                    </Grid>                           
-                        <Grid item xs={"12"}>
-                                <TextField fullWidth required label={"Phone number or Email"}></TextField>
-                            </Grid>
-                            <Grid item xs={"12"}>
-                                <TextField fullWidth required label={"Password"}></TextField>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Grid>
-            </Grid>
-
-        </Box>
-    );
-}
-
-
-
-

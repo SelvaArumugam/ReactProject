@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "selva",
+      "lastName": "arumugam",
+      "number": "8148182472",
+      "email": "arumugamselva60@gmail.com",
+      "password": "Test123"
+    },
+    {
+      "firstName": "Sasi",
+      "lastName": "S",
+      "number": "9597249091",
+      "email": "sasi@gmail.com",
+      "password": "sasiSwetha",
+      "id": 3
+    },
+    {
+      "firstName": "Selva",
+      "lastName": "Arumugam",
+      "number": "01980938",
+      "email": "1221",
+      "password": "123122",
+      "id": 4
+    },
+    {
+      "firstName": "Shree",
+      "lastName": "Ram",
+      "number": "0987654321",
+      "email": "Shreeram@gmail.com",
+      "password": "1234567890",
+      "id": 5
+    },
+    {
+      "firstName": "Sasmita",
+      "lastName": "M K",
+      "number": "7010747884",
+      "email": "sasmita@gmail.com",
+      "password": "kaaaaa",
+      "id": 6
+    }
+  ]
+}

@@ -1,5 +1,8 @@
-import { Autocomplete, Button, Paper, TextField} from "@mui/material";
+import { Autocomplete, Button, TextField} from "@mui/material";
 import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro/DesktopDateRangePicker';
 let opt = ["DEL - New Delhi,India","BOM - Mumbai,India","HYD - Hydrabad,India","BLR - Bangalore,India","MAA - Chennai,India","GOI - Goa,India","SIN - Singapore,Singapore","BKK - Bangkok,Thailand","KUL - Kuala Lumpur,Malaysia"];
 export default function ActionBar()
 {
@@ -8,31 +11,31 @@ export default function ActionBar()
         <Autocomplete
         id="From"
         freeSolo
-        sx = {{width : "200px",padding:3, color:"darkorange"}}
+        sx = {{width : "200px",padding:2, color:"darkorange"}}
         options={opt.map((option) => option)}
         renderInput={(params) => <TextField {...params} label="From" />}
       />
-      <ConnectingAirportsIcon sx={{height:"50vh"}}/>
+        <ConnectingAirportsIcon sx={{height:"50vh"}}/>
       <Autocomplete
         id="To"
         freeSolo
-        sx = {{width : "200px",padding:3, color:"darkorange"}}
+        sx = {{width : "200px",padding:2, color:"darkorange"}}
         options={opt.map((option) => option)}
         renderInput={(params) => <TextField {...params} label="To" />}
       />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DesktopDateRangePicker  calendars={1} slotProps={{
+              textField: ({ position }) => ({
+              label: position === 'start' ? 'Departure' : 'Return',
+            }),
+          }}/>
+      </LocalizationProvider>
       <Autocomplete
         id="From"
         freeSolo
-        sx = {{width : "200px",padding:3, color:"darkorange"}}
+        sx = {{width : "200px",padding:1,paddingRight:3,paddingLeft:2, color:"darkorange"}}
         options={opt.map((option) => option)}
-        renderInput={(params) => <TextField {...params} label="Depature" />}
-      />
-      <Autocomplete
-        id="From"
-        freeSolo
-        sx = {{width : "200px",padding:3,paddingRight:7, color:"darkorange"}}
-        options={opt.map((option) => option)}
-        renderInput={(params) => <TextField {...params} label="Return" />}
+        renderInput={(params) => <TextField {...params} label="Number of Passengers" />}
       />
       <Button variant="contained" color="warning" style={{width:"200px"}}>Submit</Button>
         </div>
