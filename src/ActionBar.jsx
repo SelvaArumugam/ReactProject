@@ -3,7 +3,9 @@ import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro/DesktopDateRangePicker';
+import { Link } from "react-router-dom";
 let opt = ["DEL - New Delhi,India","BOM - Mumbai,India","HYD - Hydrabad,India","BLR - Bangalore,India","MAA - Chennai,India","GOI - Goa,India","SIN - Singapore,Singapore","BKK - Bangkok,Thailand","KUL - Kuala Lumpur,Malaysia"];
+let num = [1,2,3,4];
 export default function ActionBar()
 {
     return(
@@ -34,10 +36,10 @@ export default function ActionBar()
         id="From"
         freeSolo
         sx = {{width : "200px",padding:1,paddingRight:3,paddingLeft:2, color:"darkorange"}}
-        options={opt.map((option) => option)}
+        options={num.map((option) => option)}
         renderInput={(params) => <TextField {...params} label="Number of Passengers" />}
       />
-      <Button variant="contained" color="warning" style={{width:"200px"}}>Submit</Button>
+      <Link to="/Result"><Button variant="contained"  color="warning" style={{width:"200px"}}>Submit</Button></Link>
         </div>
     );
 }

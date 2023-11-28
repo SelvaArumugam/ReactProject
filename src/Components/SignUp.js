@@ -50,7 +50,7 @@ export default function SignUp ()
             number : numberRef.current.value,
             email : emailRef.current.value,
             password : passRef.current.value}).then(() => console.log("Successful"));
-        navigate("/");
+        navigate("/Login");
         
     }
     return {numberRef,fnameRef,lnameRef,emailRef,passRef,error,addUser};

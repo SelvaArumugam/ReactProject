@@ -37,7 +37,7 @@ export default function LoginPage()
             setError("Password cannot be Empty");
             return;
         }
-        if(type === "email")
+        if(logType === "email")
         {
             axios.get(`http://localhost:8000/users?email=${emailRef.current.value}`).then((res) =>{
             if(res.data[0].password !== passRef.current.value)
